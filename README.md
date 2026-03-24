@@ -43,10 +43,7 @@ This project aims to eliminate centralized control in academic publishing and pr
 
 ## 🔗 Deployed Smart Contract Link
 
-> (Add your deployed contract link here)
-
-Example:
-https://stellar.expert/explorer/testnet/contract/XXXXXXXXXXXXXXXXXXXXXXXX
+>https://stellar.expert/explorer/testnet/contract/CB54MYUYMBJ5USG4ADRMUFKZM2EXLFOG4Z57QOLXLQSOIEVYJO6EZUOJ
 
 ---
 
