@@ -6,7 +6,8 @@ The Academic Publishing Platform is a decentralized application built on the Ste
 
 This project aims to eliminate centralized control in academic publishing and provide open access to research content using blockchain technology.
 
----
+![Uploading image.png…]()
+
 
 ## ⚙️ What It Does
 
