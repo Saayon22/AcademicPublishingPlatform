@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Publishing Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        .nav-bar {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .testnet-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 6px;
+            font-size: 12px;
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .connect-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #6d28d9;
+            color: #6d28d9;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .connect-btn:hover {
+            background: rgba(109, 40, 217, 0.1);
+        }
+
+        .hero {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(109, 40, 217, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border-bottom: 1px solid rgba(100, 150, 255, 0.1);
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 8vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 span {
+            color: #6d28d9;
+        }
+
+        .hero p {
+            font-size: clamp(13px, 4vw, 16px);
+            color: #9ca3af;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: clamp(20px, 5vw, 40px);
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: clamp(18px, 5vw, 24px);
+            font-weight: 700;
+            color: white;
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px;
+            }
+        }
+
+        .contract-card {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 32px;
+        }
+
+        .contract-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .contract-info {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .contract-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .contract-details h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .contract-address {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .contract-badge {
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            color: #60a5fa;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid rgba(100, 150, 255, 0.1);
+        }
+
+        .tab-button {
+            padding: 12px 0;
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .tab-button:hover {
+            color: #d1d5db;
+        }
+
+        .tab-button.active {
+            color: #6d28d9;
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #6d28d9;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .function-section {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(100, 150, 255, 0.15);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .function-name {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #60a5fa;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 13px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6d28d9;
+            background: rgba(31, 41, 55, 0.8);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 12px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(109, 40, 217, 0.3);
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .paper-card {
+            background: rgba(31, 41, 55, 0.6);
+            border: 1px solid rgba(100, 150, 255, 0.15);
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .paper-card:hover {
+            border-color: rgba(109, 40, 217, 0.4);
+            background: rgba(31, 41, 55, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .paper-title {
+            font-size: 15px;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .paper-author {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 12px;
+        }
+
+        .paper-hash {
+            font-size: 11px;
+            color: #6b7280;
+            word-break: break-all;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-family: 'Courier New', monospace;
+            flex-grow: 1;
+        }
+
+        .view-button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .no-papers {
+            text-align: center;
+            padding: 60px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .footer {
+            background: rgba(15, 23, 42, 0.6);
+            border-top: 1px solid rgba(100, 150, 255, 0.1);
+            color: #9ca3af;
+            text-align: center;
+            padding: 24px 20px;
+            margin-top: 40px;
+            font-size: 12px;
+        }
+
+        .footer code {
+            background: rgba(31, 41, 55, 0.8);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(100, 150, 255, 0.3);
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+            padding-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            flex: 1;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+
+        .modal-body {
+            margin-bottom: 24px;
+        }
+
+        .paper-detail-item {
+            margin-bottom: 16px;
+        }
+
+        .paper-detail-label {
+            font-size: 12px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .paper-detail-value {
+            font-size: 15px;
+            color: #e0e0e0;
+            word-break: break-all;
+        }
+
+        .paper-detail-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+            padding: 16px;
+            background: rgba(100, 150, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(100, 150, 255, 0.1);
+        }
+
+        .paper-stat {
+            text-align: center;
+        }
+
+        .paper-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6d28d9;
+        }
+
+        .paper-stat-label {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            color: white;
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+        }
+
+        .modal-btn-secondary {
+            background: rgba(100, 150, 255, 0.1);
+            color: #6d28d9;
+            border: 1px solid rgba(100, 150, 255, 0.3);
+        }
+
+        .modal-btn-secondary:hover {
+            background: rgba(100, 150, 255, 0.2);
+        }
+
+        .search-box {
+            margin-bottom: 24px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 13px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #6d28d9;
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .nav-right {
+                gap: 8px;
+            }
+
+            .testnet-badge {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+
+            .connect-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .contract-card {
+                padding: 16px;
+            }
+
+            .tabs {
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+
+            .tab-button {
+                font-size: 12px;
+                padding: 10px 0;
+            }
+
+            .function-section {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .submit-button {
+                padding: 10px;
+                font-size: 13px;
+                margin-top: 8px;
+            }
+
+            .footer {
+                padding: 16px 12px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-bar {
+                padding: 12px 12px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 13px;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero {
+                padding: 30px 16px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .hero p {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .hero-stats {
+                gap: 16px;
+                margin-top: 20px;
+            }
+
+            .hero-stat-value {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 12px;
+            }
+
+            .contract-card {
+                padding: 12px;
+                margin-top: 16px;
+            }
+
+            .tabs {
+                gap: 8px;
+            }
+
+            .tab-button {
+                font-size: 11px;
+                padding: 8px 0;
+            }
+
+            .papers-grid {
+                gap: 12px;
+            }
+
+            .paper-card {
+                padding: 12px;
+            }
+
+            .function-section {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="logo">
+            <div class="logo-icon">📚</div>
+            <span>Academic Publishing</span>
+        </div>
+        <div class="nav-right">
+            <div class="testnet-badge">
+                🟢 TESTNET
+            </div>
+            <button class="connect-btn" onclick="connectWallet()">Connect</button>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Academic Research<br><span>on the Blockchain</span></h1>
+        <p>Register papers, verify authorship, and track citations — immutably on Stellar.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value" id="hero-papers">0</div>
+                <div class="hero-stat-label">Papers</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">&lt;$0.01</div>
+                <div class="hero-stat-label">Cost</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">Testnet</div>
+                <div class="hero-stat-label">Network</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="contract-card">
+            <div class="contract-header">
+                <div class="contract-info">
+                    <div class="contract-icon">📚</div>
+                    <div class="contract-details">
+                        <h2>Academic Publishing</h2>
+                        <div class="contract-address">C83TEE...6PD0</div>
+                    </div>
+                </div>
+                <div class="contract-badge">Soroban</div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab(event, 'view')">🔍 View</button>
+                <button class="tab-button" onclick="switchTab(event, 'publish')">📝 Publish</button>
+                <button class="tab-button" onclick="switchTab(event, 'stats')">📊 Stats</button>
+            </div>
+
+            <!-- View Tab -->
+            <div id="view" class="tab-content active">
+                <div class="search-box" style="margin-bottom: 24px;">
+                    <input type="text" id="searchInput" placeholder="Search papers by title or author..." onkeyup="searchPapers()">
+                </div>
+
+                <div class="function-section" style="background: rgba(100, 150, 255, 0.05); border: 1px solid rgba(100, 150, 255, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 24px;">
+                    <div style="font-size: 14px; font-weight: 600; color: #e0e0e0; margin-bottom: 16px;">📚 Search Papers by ID</div>
+                    
+                    <div class="form-group">
+                        <label style="font-size: 13px; color: #9ca3af;">Enter Paper ID</label>
+                        <input type="number" id="viewPaperId" placeholder="e.g. 1" min="1" style="width: 100%;">
+                    </div>
+                    
+                    <button class="submit-button" onclick="viewPaperById()">🔍 Find Paper</button>
+                </div>
+
+                <div id="papersList" class="papers-grid" style="margin-top: 24px;"></div>
+            </div>
+
+            <!-- Paper Details Modal -->
+            <div id="paperModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modalTitle"></h2>
+                        <button class="modal-close" onclick="closePaperModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="paper-detail-item">
+                            <div class="paper-detail-label">Author</div>
+                            <div class="paper-detail-value" id="modalAuthor"></div>
+                        </div>
+                        <div class="paper-detail-item">
+                            <div class="paper-detail-label">Content Hash</div>
+                            <div class="paper-detail-value" id="modalHash" style="font-family: 'Courier New', monospace; font-size: 13px;"></div>
+                        </div>
+                        <div class="paper-detail-stats">
+                            <div class="paper-stat">
+                                <div class="paper-stat-value" id="modalViews">--</div>
+                                <div class="paper-stat-label">Views</div>
+                            </div>
+                            <div class="paper-stat">
+                                <div class="paper-stat-value" id="modalCitations">--</div>
+                                <div class="paper-stat-label">Citations</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="modal-btn modal-btn-secondary" onclick="closePaperModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publish Tab -->
+            <div id="publish" class="tab-content">
+                <div class="function-section" style="background: linear-gradient(135deg, rgba(109, 40, 217, 0.1), rgba(37, 99, 235, 0.05)); border: 1px solid rgba(100, 150, 255, 0.2); border-radius: 8px;">
+                    <div style="font-size: 16px; font-weight: 700; color: #e0e0e0; margin-bottom: 8px;">📝 Publish Your Paper</div>
+                    <div style="font-size: 13px; color: #9ca3af; margin-bottom: 20px;">Share your academic research on the blockchain</div>
+
+                    <div id="publishMessage"></div>
+
+                    <form onsubmit="publishPaper(event)">
+                        <div class="form-group">
+                            <label style="font-size: 13px; color: #9ca3af; font-weight: 600;">Paper Title *</label>
+                            <input type="text" id="title" required maxlength="200" placeholder="e.g., Quantum Computing Applications in Medicine">
+                        </div>
+
+                        <div class="form-group">
+                            <label style="font-size: 13px; color: #9ca3af; font-weight: 600;">Author Name *</label>
+                            <input type="text" id="author" required maxlength="100" placeholder="Your name or institution">
+                        </div>
+
+                        <div class="form-group">
+                            <label style="font-size: 13px; color: #9ca3af; font-weight: 600;">File Hash *</label>
+                            <div style="display: grid; grid-template-columns: 1fr auto; gap: 8px;">
+                                <input type="text" id="contentHash" required placeholder="Auto-generated or your IPFS hash">
+                                <button type="button" class="submit-button" style="background: rgba(37, 99, 235, 0.2); color: #60a5fa; margin: 0; white-space: nowrap;" onclick="generateSampleHash()">🔄 Generate</button>
+                            </div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 6px;">Click Generate to create a unique file identifier</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="font-size: 13px; color: #9ca3af; font-weight: 600;">Abstract (Optional)</label>
+                            <textarea id="preview" maxlength="500" placeholder="Brief summary of your research findings..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button" style="width: 100%; margin-top: 16px;">📝 Publish Paper to Blockchain</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Stats Tab -->
+            <div id="stats" class="tab-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                    <div class="function-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(37, 99, 235, 0.05));">
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">Total Papers</div>
+                        <div id="stat-papers" style="font-size: 32px; font-weight: 700; color: #10b981;">0</div>
+                    </div>
+                    <div class="function-section" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));">
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">Authors</div>
+                        <div id="stat-authors" style="font-size: 32px; font-weight: 700; color: #60a5fa;">0</div>
+                    </div>
+                    <div class="function-section" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(37, 99, 235, 0.05));">
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">Published Today</div>
+                        <div id="stat-today" style="font-size: 32px; font-weight: 700; color: #c084fc;">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🌐 Academic Publishing Platform • Powered by Soroban on Stellar</p>
+        <p style="margin-top: 8px; font-size: 11px;">Contract: <code>CDDOFRJSIYSF5QD2KFYNE4BPZPBH7YWJKOIXQC2M7JBX7LMYL7OK5FCT</code></p>
+        <p style="margin-top: 8px; font-size: 11px;">Backend: http://localhost:5000 | Frontend: http://localhost:9000</p>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        let allPapers = [];
+        let walletConnected = false;
+        let userAddress = null;
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPapers();
+            checkWalletConnection();
+            setupEventListeners();
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('searchInput')?.addEventListener('keyup', searchPapers);
+        }
+
+        // Check if wallet was previously connected
+        function checkWalletConnection() {
+            const savedAddress = localStorage.getItem('userAddress');
+            if (savedAddress) {
+                walletConnected = true;
+                userAddress = savedAddress;
+                updateConnectButton();
+            }
+        }
+
+        // Connect/Disconnect wallet
+        async function connectWallet() {
+            const btn = document.querySelector('.connect-btn');
+            
+            if (walletConnected) {
+                // Disconnect
+                walletConnected = false;
+                userAddress = null;
+                localStorage.removeItem('userAddress');
+                updateConnectButton();
+                showMessage('Wallet disconnected', 'success');
+                return;
+            }
+
+            try {
+                btn.disabled = true;
+                btn.textContent = '⏳ Connecting...';
+
+                // Check if Freighter wallet is available
+                if (typeof window.freighter !== 'undefined') {
+                    try {
+                        // Request public key from Freighter
+                        const response = await window.freighter.requestPublicKey();
+                        userAddress = response;
+                        localStorage.setItem('userAddress', userAddress);
+                        walletConnected = true;
+                        updateConnectButton();
+                        showMessage('✅ Connected to Freighter Wallet', 'success');
+                        return;
+                    } catch (freighterError) {
+                        console.error('Freighter connection error:', freighterError);
+                    }
+                }
+
+                // Fallback to other wallet types or demo
+                if (typeof window.stellar !== 'undefined') {
+                    try {
+                        const publicKey = await window.stellar.requestPublicKey();
+                        localStorage.setItem('userAddress', publicKey);
+                        walletConnected = true;
+                        userAddress = publicKey;
+                        updateConnectButton();
+                        showMessage('✅ Connected to Stellar Wallet', 'success');
+                        return;
+                    } catch (stellarError) {
+                        console.error('Stellar wallet error:', stellarError);
+                    }
+                }
+
+                // If no wallet extension is found, use demo mode
+                console.log('No wallet extension found, using demo mode');
+                throw new Error('No wallet extension detected');
+
+            } catch (error) {
+                console.error('Wallet connection error:', error);
+                showMessage('No wallet extension detected. Using demo mode for testing.', 'error');
+                // Fallback to demo mode
+                const mockAddress = 'GDEMO' + generateRandomId(49);
+                localStorage.setItem('userAddress', mockAddress);
+                walletConnected = true;
+                userAddress = mockAddress;
+                updateConnectButton();
+            } finally {
+                btn.disabled = false;
+                updateConnectButton();
+            }
+        }
+
+        // Update connect button state
+        function updateConnectButton() {
+            const btn = document.querySelector('.connect-btn');
+            if (walletConnected && userAddress) {
+                btn.classList.add('connected');
+                btn.innerHTML = '✅ ' + userAddress.substring(0, 6) + '...' + userAddress.substring(userAddress.length - 4);
+                btn.title = userAddress;
+            } else {
+                btn.classList.remove('connected');
+                btn.textContent = 'Connect';
+            }
+        }
+
+        // Switch tabs
+        function switchTab(e, tabName) {
+            e.preventDefault();
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            e.target.classList.add('active');
+            
+            if (tabName === 'stats') {
+                loadStats();
+            }
+        }
+
+        // Load papers
+        async function loadPapers() {
+            try {
+                const response = await fetch(`${API_URL}/papers`);
+                const data = await response.json();
+                allPapers = data.papers;
+                displayPapers(allPapers);
+                updateHeroStats(data.papers);
+            } catch (error) {
+                console.error('Error loading papers:', error);
+                document.getElementById('papersList').innerHTML = '<div class="no-papers">⚠️ Error loading papers. Make sure the backend is running on port 5000.</div>';
+            }
+        }
+
+        // Display papers
+        function displayPapers(papers) {
+            if (papers.length === 0) {
+                document.getElementById('papersList').innerHTML = '<div class="no-papers">📭 No papers published yet. Be the first to publish!</div>';
+                return;
+            }
+
+            const html = papers.map(paper => `
+                <div class="paper-card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                        <div style="flex: 1; min-width: 0;">
+                            <div class="paper-title">${escapeHtml(paper.title)}</div>
+                            <div class="paper-author">by ${escapeHtml(paper.author)}</div>
+                        </div>
+                    </div>
+                    <div class="paper-hash" title="${paper.content_hash}">Hash: ${paper.content_hash.substring(0, 20)}...</div>
+                    <div style="display: flex; gap: 8px; margin-bottom: 12px; font-size: 12px; color: #9ca3af;">
+                        <span>👁️ ${paper.views || 0}</span>
+                        <span>📌 ${paper.citations || 0}</span>
+                    </div>
+                    <button class="view-button" onclick="viewPaper(${paper.id})" style="margin-top: auto;">🔍 View Paper</button>
+                </div>
+            `).join('');
+            
+            document.getElementById('papersList').innerHTML = html;
+        }
+
+        // Update hero stats
+        function updateHeroStats(papers) {
+            document.getElementById('hero-papers').textContent = papers.length;
+        }
+
+        // View paper - Display paper details in modal
+        async function viewPaper(paperId) {
+            try {
+                // Find paper from allPapers array
+                const paper = allPapers.find(p => p.id === paperId);
+                if (!paper) {
+                    alert('Paper not found');
+                    return;
+                }
+
+                // Display paper details in modal
+                displayPaperModal(paper);
+
+                // Increment view count in background (no error handling needed)
+                fetch(`${API_URL}/papers/${paperId}/view`, { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                }).then(response => {
+                    if (response.ok) {
+                        // Refresh papers list to show updated view count
+                        loadPapers();
+                    }
+                }).catch(error => {
+                    console.log('View count update skipped (optional):', error);
+                });
+
+            } catch (error) {
+                console.error('Error viewing paper:', error);
+                alert('Error displaying paper: ' + error.message);
+            }
+        }
+
+        // Display paper details in modal
+        function displayPaperModal(paper) {
+            document.getElementById('modalTitle').textContent = escapeHtml(paper.title);
+            document.getElementById('modalAuthor').textContent = escapeHtml(paper.author);
+            document.getElementById('modalHash').textContent = paper.content_hash;
+            document.getElementById('modalViews').textContent = paper.views || 0;
+            document.getElementById('modalCitations').textContent = paper.citations || 0;
+            
+            const modal = document.getElementById('paperModal');
+            modal.classList.add('active');
+        }
+
+        // Close paper modal
+        function closePaperModal() {
+            const modal = document.getElementById('paperModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('paperModal');
+            if (event.target === modal) {
+                closePaperModal();
+            }
+        });
+
+        // Search papers
+        function searchPapers() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allPapers.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.author.toLowerCase().includes(query)
+            );
+            displayPapers(filtered);
+        }
+
+        // Publish paper
+        async function publishPaper(event) {
+            event.preventDefault();
+            
+            if (!walletConnected) {
+                alert('Please connect your wallet first');
+                return;
+            }
+
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const contentHash = document.getElementById('contentHash').value;
+            const preview = document.getElementById('preview').value;
+
+            if (!title || !author || !contentHash) {
+                showMessage('❌ Please fill in all required fields', 'error');
+                return;
+            }
+
+            try {
+                const btn = event.target.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.textContent = '⏳ Publishing...';
+
+                const response = await fetch(`${API_URL}/papers/publish`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title,
+                        author,
+                        content_hash: contentHash,
+                        content_preview: preview
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showMessage('✅ Paper published successfully to blockchain!', 'success');
+                    document.querySelectorAll('#publish input, #publish textarea').forEach(field => field.value = '');
+                    setTimeout(() => {
+                        loadPapers();
+                        document.querySelector('[onclick*="switchTab"]').click();
+                    }, 1500);
+                } else {
+                    showMessage('❌ ' + (data.message || 'Failed to publish paper'), 'error');
+                }
+            } catch (error) {
+                console.error('Error publishing paper:', error);
+                showMessage('❌ Network error: ' + error.message, 'error');
+            } finally {
+                const btn = event.target.querySelector('button[type="submit"]');
+                btn.disabled = false;
+                btn.textContent = '📝 Publish Paper';
+            }
+        }
+
+        // Load stats
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_URL}/stats`);
+                const data = await response.json();
+                document.getElementById('stat-papers').textContent = data.total_papers;
+                document.getElementById('stat-authors').textContent = data.total_authors;
+                document.getElementById('stat-today').textContent = data.papers_published_today;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Generate sample hash
+        function generateSampleHash() {
+            const hash = 'QmV' + generateRandomId(20) + generateRandomId(20);
+            document.getElementById('contentHash').value = hash;
+        }
+
+        // Show message
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('publishMessage');
+            messageDiv.textContent = message;
+            messageDiv.className = 'message ' + type;
+            if (type === 'success') {
+                setTimeout(() => messageDiv.textContent = '', 3000);
+            }
+        }
+
+        // Utility functions
+        function generateRandomId(length) {
+            return Math.random().toString(36).substring(2, length + 2);
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Load initial data
+        loadPapers();
+    </script>
+</body>
+</html>
