@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Publishing Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        .nav-bar {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .testnet-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 6px;
+            font-size: 12px;
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .connect-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #6d28d9;
+            color: #6d28d9;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .connect-btn:hover {
+            background: rgba(109, 40, 217, 0.1);
+        }
+
+        .hero {
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(109, 40, 217, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border-bottom: 1px solid rgba(100, 150, 255, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 span {
+            color: #6d28d9;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #9ca3af;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .contract-card {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 32px;
+        }
+
+        .contract-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .contract-info {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .contract-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .contract-details h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .contract-address {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .contract-badge {
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            color: #60a5fa;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid rgba(100, 150, 255, 0.1);
+        }
+
+        .tab-button {
+            padding: 12px 0;
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .tab-button:hover {
+            color: #d1d5db;
+        }
+
+        .tab-button.active {
+            color: #6d28d9;
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #6d28d9;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .function-section {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(100, 150, 255, 0.15);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .function-name {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #60a5fa;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 13px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6d28d9;
+            background: rgba(31, 41, 55, 0.8);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 12px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(109, 40, 217, 0.3);
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .paper-card {
+            background: rgba(31, 41, 55, 0.6);
+            border: 1px solid rgba(100, 150, 255, 0.15);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .paper-card:hover {
+            border-color: rgba(109, 40, 217, 0.4);
+            background: rgba(31, 41, 55, 0.8);
+        }
+
+        .paper-title {
+            font-size: 15px;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .paper-author {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 12px;
+        }
+
+        .paper-hash {
+            font-size: 11px;
+            color: #6b7280;
+            word-break: break-all;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .view-button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #6d28d9, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .no-papers {
+            text-align: center;
+            padding: 60px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .footer {
+            background: rgba(15, 23, 42, 0.6);
+            border-top: 1px solid rgba(100, 150, 255, 0.1);
+            color: #9ca3af;
+            text-align: center;
+            padding: 24px;
+            margin-top: 40px;
+            font-size: 12px;
+        }
+
+        .footer code {
+            background: rgba(31, 41, 55, 0.8);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 6px;
+            color: #e0e0e0;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #6d28d9;
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="logo">
+            <div class="logo-icon">📚</div>
+            <span>Academic Publishing</span>
+        </div>
+        <div class="nav-right">
+            <div class="testnet-badge">
+                🟢 TESTNET
+            </div>
+            <button class="connect-btn">Connect</button>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Academic Research<br><span>on the Blockchain</span></h1>
+        <p>Register papers, verify authorship, and track citations — immutably on Stellar.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value" id="hero-papers">0</div>
+                <div class="hero-stat-label">Papers</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">&lt;$0.01</div>
+                <div class="hero-stat-label">Cost</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">Testnet</div>
+                <div class="hero-stat-label">Network</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="contract-card">
+            <div class="contract-header">
+                <div class="contract-info">
+                    <div class="contract-icon">📚</div>
+                    <div class="contract-details">
+                        <h2>Academic Publishing</h2>
+                        <div class="contract-address">C83TEE...6PD0</div>
+                    </div>
+                </div>
+                <div class="contract-badge">Soroban</div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab(event, 'view')">🔍 View</button>
+                <button class="tab-button" onclick="switchTab(event, 'publish')">📝 Publish</button>
+                <button class="tab-button" onclick="switchTab(event, 'stats')">📊 Stats</button>
+            </div>
+
+            <!-- View Tab -->
+            <div id="view" class="tab-content active">
+                <div class="search-box" style="margin-bottom: 24px;">
+                    <input type="text" id="searchInput" placeholder="Search papers by title or author..." onkeyup="searchPapers()">
+                </div>
+
+                <div class="function-section">
+                    <div class="function-name">fn get_paper (id: u64) → <span style="color: #10b981;">Option&lt;Paper&gt;</span></div>
+                    
+                    <div class="form-group">
+                        <label>PAPER ID</label>
+                        <input type="number" id="viewPaperId" placeholder="e.g. 1" min="1">
+                    </div>
+                    
+                    <button class="submit-button" onclick="viewPaperById()">🔍 View Paper</button>
+                </div>
+
+                <div id="papersList" class="papers-grid" style="margin-top: 24px;"></div>
+            </div>
+
+            <!-- Publish Tab -->
+            <div id="publish" class="tab-content">
+                <div class="function-section">
+                    <div class="function-name">fn publish_paper (title, author, content_hash) → <span style="color: #10b981;">u64</span></div>
+
+                    <div id="publishMessage"></div>
+
+                    <form onsubmit="publishPaper(event)">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="title" required maxlength="200" placeholder="Enter paper title">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Author</label>
+                            <input type="text" id="author" required maxlength="100" placeholder="Your name or institution">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Content Hash</label>
+                            <input type="text" id="contentHash" required placeholder="IPFS hash or content identifier">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preview (Optional)</label>
+                            <textarea id="preview" maxlength="500" placeholder="Brief abstract or preview..."></textarea>
+                        </div>
+
+                        <button type="button" class="submit-button" style="background: rgba(37, 99, 235, 0.2); color: #60a5fa; margin-top: 0;" onclick="generateSampleHash()">Generate Sample Hash</button>
+                        <button type="submit" class="submit-button">📝 Publish Paper</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Stats Tab -->
+            <div id="stats" class="tab-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                    <div class="function-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(37, 99, 235, 0.05));">
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">Total Papers</div>
+                        <div id="stat-papers" style="font-size: 32px; font-weight: 700; color: #10b981;">0</div>
+                    </div>
+                    <div class="function-section" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));">
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">Authors</div>
+                        <div id="stat-authors" style="font-size: 32px; font-weight: 700; color: #60a5fa;">0</div>
+                    </div>
+                    <div class="function-section" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(37, 99, 235, 0.05));">
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">Published Today</div>
+                        <div id="stat-today" style="font-size: 32px; font-weight: 700; color: #c084fc;">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🌐 Academic Publishing Platform • Powered by Soroban on Stellar</p>
+        <p style="margin-top: 8px; font-size: 11px;">Contract: <code>CDDOFRJSIYSF5QD2KFYNE4BPZPBH7YWJKOIXQC2M7JBX7LMYL7OK5FCT</code></p>
+        <p style="margin-top: 8px; font-size: 11px;">Backend: http://localhost:5000 | Frontend: http://localhost:9000</p>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        let allPapers = [];
+
+        function switchTab(e, tabName) {
+            e.preventDefault();
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            e.target.classList.add('active');
+            
+            if (tabName === 'stats') {
+                loadStats();
+            }
+        }
+
+        async function loadPapers() {
+            try {
+                const response = await fetch(`${API_URL}/papers`);
+                const data = await response.json();
+                allPapers = data.papers;
+                displayPapers(allPapers);
+                updateHeroStats(data.papers);
+            } catch (error) {
+                console.error('Error loading papers:', error);
+                document.getElementById('papersList').innerHTML = '<div class="no-papers">Error loading papers. Make sure the backend is running on port 5000.</div>';
+            }
+        }
+
+        function displayPapers(papers) {
+            if (papers.length === 0) {
+                document.getElementById('papersList').innerHTML = '<div class="no-papers">📭 No papers found. Be the first to publish!</div>';
+                return;
+            }
+
+            const html = papers.map(paper => `
+                <div class="paper-card">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <div>
+                            <div class="paper-title">${paper.title}</div>
+                            <div class="paper-author">by ${paper.author}</div>
+                        </div>
+                    </div>
+                    <div class="paper-hash" title="${paper.content_hash}">Hash: ${paper.content_hash.substring(0, 20)}...</div>
+                    <button class="view-button" onclick="viewPaper(${paper.id})">🔍 View Paper</button>
+                </div>
+            `).join('');
+            
+            document.getElementById('papersList').innerHTML = html;
+        }
+
+        function updateHeroStats(papers) {
+            document.getElementById('hero-papers').textContent = papers.length;
+        }
+
+        async function viewPaper(paperId) {
+            try {
+                await fetch(`${API_URL}/papers/${paperId}/view`, { method: 'POST' });
+                loadPapers();
+            } catch (error) {
+                console.error('Error viewing paper:', error);
+            }
+        }
+
+        async function viewPaperById() {
+            const paperId = document.getElementById('viewPaperId').value;
+            if (!paperId) {
+                alert('Please enter a paper ID');
+                return;
+            }
+            viewPaper(parseInt(paperId));
+            document.getElementById('viewPaperId').value = '';
+        }
+
+        function searchPapers() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allPapers.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.author.toLowerCase().includes(query)
+            );
+            displayPapers(filtered);
+        }
+
+        async function publishPaper(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const contentHash = document.getElementById('contentHash').value;
+            const preview = document.getElementById('preview').value;
+
+            if (!title || !author || !contentHash) {
+                showMessage('Please fill in all required fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/papers/publish`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title,
+                        author,
+                        content_hash: contentHash,
+                        content_preview: preview
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showMessage('✅ Paper published successfully!', 'success');
+                    document.querySelectorAll('input, textarea').forEach(field => field.value = '');
+                    setTimeout(() => {
+                        loadPapers();
+                    }, 1500);
+                } else {
+                    showMessage('Failed to publish paper', 'error');
+                }
+            } catch (error) {
+                console.error('Error publishing paper:', error);
+                showMessage('Error: Backend not responding', 'error');
+            }
+        }
+
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_URL}/stats`);
+                const data = await response.json();
+                document.getElementById('stat-papers').textContent = data.total_papers;
+                document.getElementById('stat-authors').textContent = data.total_authors;
+                document.getElementById('stat-today').textContent = data.papers_published_today;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        function generateSampleHash() {
+            const hash = 'QmV' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            document.getElementById('contentHash').value = hash;
+        }
+
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('publishMessage');
+            messageDiv.textContent = message;
+            messageDiv.className = 'message ' + type;
+            if (type === 'success') {
+                setTimeout(() => messageDiv.textContent = '', 3000);
+            }
+        }
+
+        // Load initial data
+        loadPapers();
+    </script>
+</body>
+</html>
