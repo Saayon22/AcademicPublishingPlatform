@@ -5,6 +5,8 @@
 The Academic Publishing Platform is a decentralized application built on the Stellar Soroban smart contract platform. It enables researchers and authors to publish academic papers in a transparent, tamper-proof, and censorship-resistant manner.
 
 This project aims to eliminate centralized control in academic publishing and provide open access to research content using blockchain technology.
+<img width="1914" height="906" alt="image" src="https://github.com/user-attachments/assets/3101d868-e3e0-4ac5-81b8-64beb63c20eb" />
+
 
 ---
 
