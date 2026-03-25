@@ -928,7 +928,14 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:5000/api';
+        // Determine API URL based on environment
+        const API_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:5000/api'
+            : (process.env.REACT_APP_API_URL || 'https://academicpublishing-production.railway.app/api');
+        
+        console.log('Environment:', window.location.hostname);
+        console.log('API URL:', API_URL);
+        
         let allPapers = [];
         let walletConnected = false;
         let userAddress = null;
